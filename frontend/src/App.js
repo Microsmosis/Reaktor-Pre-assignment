@@ -4,18 +4,15 @@ import { droneData } from './utils/droneData';
 import { pilotData } from './utils/pilotData';
 import { checkDistanceFromNest } from './utils/distanceFromNest';
 
-function App() {
+const App = () => {
   const [violators, setViolators] = useState([]);
   const [violatorsInfo, setViolatorsInfo] = useState([]);
   const [closestViolator, setClosestViolator] = useState({});
-  // We might want to do this request in few second intervals
-  // so this useEffect is here now only for testing.
-  // Can try to pass violators as dependency for useEffect, but might be
-  // a bit heavy way to do it :DDDDD
+
   useEffect(() => {
     droneData().then((violators) => {
-      // and here we would want to concat instead of always adding a new list of violators
-      // and do some kind of checks that should we remove a violator of the list due to 10 min constrict
+      // do some kind of checks that should we remove a violator of the list due to 10 min constrict
+	  // maybe cron job or in the useEffect beneath ( can cause infinte loop so maybe bad idea ..)
       setViolators(current => [...current, ...violators]);
     });
   }, []);

@@ -1,5 +1,3 @@
-
-
 export const checkDistanceFromNest = (violators) => {
 	if(violators?.length) {
 		const closest = violators.reduce((curr, prev) => {

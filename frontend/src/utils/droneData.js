@@ -25,6 +25,7 @@ export const droneData = (async () => {
     const allDrones = await droneDataService();
     const violators = [];
     if(allDrones?.length) {
+	  // this map could be done into a own separate function to improve readability !!
       allDrones.map((drone) => {
         if(isViolator(drone) === true) {
 		  drone = convertCoordinates(drone);
