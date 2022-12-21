@@ -11,14 +11,14 @@ const App = () => {
 
   useEffect(() => {
     droneData().then((violators) => {
-      // do some kind of checks that should we remove a violator of the list due to 10 min constrict
-	  // maybe cron job or in the useEffect beneath ( can cause infinte loop so maybe bad idea ..)
-      setViolators(current => [...current, ...violators]);
+	  // useInterval, check Dan Abramov tutorial for interval api calls.
+      setViolators(current => [...current, ...violators]); // this is pushing old once twice or more (longer delay can solve this too)have to filter before push
     });
   }, []);
 
   useEffect(() => {
 	if(violators?.length) {
+	  // console.log(violators)
 	  setClosestViolator(checkDistanceFromNest(violators));
       pilotData(violators).then((pilots) => {
         setViolatorsInfo(pilots);

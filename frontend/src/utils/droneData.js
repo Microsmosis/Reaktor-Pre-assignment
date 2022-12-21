@@ -4,14 +4,16 @@ import { droneDataService } from '../services/droneDataService';
 // to improve readabilty and to clarify for people reading the code
 
 const isViolator = (drone) => {
-    if(drone.positionX >= 150000 && 
-        drone.positionX <= 350000 && 
-        drone.positionY >= 150000 && 
-        drone.positionY <= 350000) {
-            return true
-        } else {
-            return false
-        };
+	const circleX = 250000;
+	const circleY = 250000;
+	const radius = 100000;
+
+	if ((drone.positionX - circleX) * (drone.positionX - circleX) +
+		  (drone.positionY - circleY) * (drone.positionY - circleY) <= radius * radius) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 const convertCoordinates = (drone) => {
