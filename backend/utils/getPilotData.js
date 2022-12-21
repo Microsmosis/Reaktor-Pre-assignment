@@ -2,7 +2,7 @@ const axios = require('axios');
 
 
 const getPilotData = async (pilotSerialNumbers) => {
-        const allPilotsInfo = [];
+        let allPilotsInfo = [];
         await Promise.all(pilotSerialNumbers.map(async (pilot) => {
             try {
                 const pilotInfo = await axios.get(`https://assignments.reaktor.com/birdnest/pilots/${pilot.serialNumber}`);

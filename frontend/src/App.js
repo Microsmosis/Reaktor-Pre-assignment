@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import { droneData } from './utils/droneData';
 import { pilotData } from './utils/pilotData';
+import { checkDistanceFromNest } from './utils/distanceFromNest';
 
 function App() {
   const [violators, setViolators] = useState([]);
@@ -13,19 +14,19 @@ function App() {
   // a bit heavy way to do it :DDDDD
   useEffect(() => {
     droneData().then((violators) => {
-      // could do a filter here for the closest nest violator from old and new violators
       // and here we would want to concat instead of always adding a new list of violators
       // and do some kind of checks that should we remove a violator of the list due to 10 min constrict
-      setViolators(violators);
-    })
+      setViolators(current => [...current, ...violators]);
+    });
   }, []);
 
   useEffect(() => {
-    if(violators?.length) {
+	if(violators?.length) {
+	  setClosestViolator(checkDistanceFromNest(violators));
       pilotData(violators).then((pilots) => {
         setViolatorsInfo(pilots);
       });
-    }
+    };
   }, [violators]);
 
   return (
