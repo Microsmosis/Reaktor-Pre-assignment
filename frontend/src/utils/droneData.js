@@ -8,17 +8,18 @@ const isViolator = (drone) => {
             return true
         } else {
             return false
-        }
+        };
 }
 
 export const droneData = (async () => {
     const allDrones = await droneDataService();
     const violators = [];
-    allDrones.map((drone) => {
-      if(isViolator(drone) === true) {
-        drone.violationTime = Date.now();
-        violators.push(drone);
-      }
-    });
-    return violators;
+    if(allDrones?.length) {
+      allDrones.map((drone) => {
+        if(isViolator(drone) === true) {
+          violators.push(drone);
+        };
+      });
+      return violators;
+    }
 })

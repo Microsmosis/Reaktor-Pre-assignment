@@ -13,7 +13,6 @@ function App() {
   // a bit heavy way to do it :DDDDD
   useEffect(() => {
     droneData().then((violators) => {
-      console.log('violators : ', violators);
       // could do a filter here for the closest nest violator from old and new violators
       // and here we would want to concat instead of always adding a new list of violators
       // and do some kind of checks that should we remove a violator of the list due to 10 min constrict
@@ -22,13 +21,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if(violators.length) {
+    if(violators?.length) {
       pilotData(violators).then((pilots) => {
-        console.log(pilots);
         setViolatorsInfo(pilots);
       });
     }
-  }, [violators])
+  }, [violators]);
 
   return (
    <div>
