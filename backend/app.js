@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const droneRouter = require("./controllers/droneDataRouter");
-const pilotRouter = require("./controllers/pilotDataRouter");
+const droneRouter = require("./controllers/droneRouter");
+const pilotRouter = require("./controllers/pilotRouter");
 
 app.use(
   cors({

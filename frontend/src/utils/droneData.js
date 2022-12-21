@@ -1,5 +1,8 @@
 import { droneDataService } from '../services/droneDataService';
 
+// instead of plain numbers could save the value into some variable
+// to improve readabilty and to clarify for people reading the code
+
 const isViolator = (drone) => {
     if (drone.positionX >= 150000 && 
         drone.positionX <= 350000 && 
