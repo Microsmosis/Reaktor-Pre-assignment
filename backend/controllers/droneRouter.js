@@ -3,25 +3,24 @@ const droneDataRouter = require("express").Router();
 const getDroneData = require('../utils/getDroneData');
 const queries = require("../queries/pilotquery");
 
-const isViolator = (drone) => {
+const isViolator = (droneX, droneY) => {
 	const circleX = 250000;
 	const circleY = 250000;
 	const radius = 100000;
 
-	if ((drone.positionX - circleX) * (drone.positionX - circleX) +
-		  (drone.positionY - circleY) * (drone.positionY - circleY) <= radius * radius) {
+	if ((droneX - circleX) * (droneX - circleX) +
+		  (droneY - circleY) * (droneY - circleY) <= radius * radius) {
 	  return true;
 	} else {
 	  return false;
 	}
 }
 
-const convertCoordinates = (drone) => {
+const getDistanceToNest = (x, y) => {
 	const nestPosition = 250000;
-	drone.positionX = drone.positionX - nestPosition;
-	drone.positionY = drone.positionY - nestPosition;
-	drone.distanceToNest = Math.sqrt(drone.positionX * drone.positionX + drone.positionY * drone.positionY)
-	return drone;
+	x = x - nestPosition;
+	y = y - nestPosition;
+	return Math.sqrt(x * x + y * y)
 }
 
 droneDataRouter.get('/', async (request, response) => {
@@ -30,8 +29,8 @@ droneDataRouter.get('/', async (request, response) => {
 	
 	if(allDrones?.length) {
 		allDrones.map((drone) => {
-			if(isViolator(drone) === true) {
-				drone = convertCoordinates(drone);
+			if(isViolator(drone.positionX, drone.positionY) === true) {
+				drone.distanceToNest = getDistanceToNest(drone.positionX, drone.positionY);
 				violators.push(drone);
 			};
 		});
@@ -40,10 +39,10 @@ droneDataRouter.get('/', async (request, response) => {
 	// this function into own file > getPilotData.js 
 	await Promise.all(violators.map(async (pilot) => {
 		try {
-			const pilotInfo = await axios.get(`https://assignments.reaktor.com/birdnest/pilots/${pilot.serialNumber}`);
-			pilotInfo.data.distanceToNest = pilot.distanceToNest;
-			pilotInfo.data.serialNumber = pilot.serialNumber;
-			await queries.insertPilot(pilotInfo.data.firstName, pilotInfo.data.lastName, pilotInfo.data.email, pilotInfo.data.phoneNumber, pilotInfo.data.distanceToNest, pilotInfo.data.serialNumber);
+			const { data: pilotInfo } = await axios.get(`https://assignments.reaktor.com/birdnest/pilots/${pilot.serialNumber}`);
+			pilotInfo.distanceToNest = pilot.distanceToNest;
+			pilotInfo.serialNumber = pilot.serialNumber;
+			await queries.insertPilot(pilotInfo.firstName, pilotInfo.lastName, pilotInfo.email, pilotInfo.phoneNumber, pilotInfo.distanceToNest, pilotInfo.serialNumber);
 		} catch (error) {
 			console.error(error);
 			allPilotsInfo = [];
