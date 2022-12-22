@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import { droneData } from './utils/droneData';
 import { pilotData } from './utils/pilotData';
+import { useInterval } from './utils/useInterval';
 import { checkDistanceFromNest } from './utils/distanceFromNest';
 
 const App = () => {
@@ -9,16 +10,15 @@ const App = () => {
   const [violatorsInfo, setViolatorsInfo] = useState([]);
   const [closestViolator, setClosestViolator] = useState({});
 
-  useEffect(() => {
-    droneData().then((violators) => {
-	  // useInterval, check Dan Abramov tutorial for interval api calls.
-      setViolators(current => [...current, ...violators]); // this is pushing old once twice or more (longer delay can solve this too)have to filter before push
-    });
-  }, []);
+  useInterval(() => {
+	droneData().then((violators) => {
+	  setViolators(current => [...current, ...violators])
+	});
+  }, 3000); // try with 2000
 
   useEffect(() => {
 	if(violators?.length) {
-	  // console.log(violators)
+	  console.log(violators)
 	  setClosestViolator(checkDistanceFromNest(violators));
       pilotData(violators).then((pilots) => {
         setViolatorsInfo(pilots);
