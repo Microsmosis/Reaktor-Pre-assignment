@@ -1,20 +1,16 @@
 import './App.css';
 import { List } from './components/List';
-import { useState, useEffect } from 'react';
-import { droneData } from './utils/droneData';
-import { pilotData } from './utils/pilotData';
+import { useState } from 'react';
+import { droneDataService } from './services/droneDataService';
 import { useInterval } from './utils/useInterval';
 import { checkDistanceFromNest } from './utils/distanceFromNest';
-import { removeViolator } from './utils/removeViolator';
-import { removeDuplicates } from './utils/removeDuplicates';
 
 const App = () => {
-  const [violatorDrones, setViolatorDrones] = useState([]);
   const [violatorPilots, setViolatorPilots] = useState([]);
   const [closestViolator, setClosestViolator] = useState({}); // this is now the drone but has to be the pilot
 
   useInterval(() => {
-	droneData().then((violators) => {
+	droneDataService().then((violators) => {
 		if(violators?.length) {
 			setViolatorPilots(violators);
 			setClosestViolator(checkDistanceFromNest(violatorPilots));
@@ -22,17 +18,8 @@ const App = () => {
 	});
   }, 3000);
 
-/*   useEffect(() => {
-	if(violatorDrones?.length) {
-		pilotData(removeDuplicates(violatorDrones, violatorPilots)).then((pilots) => {
-			if(pilots?.length) {
-				setViolatorPilots(current => [...current, ...pilots]);
-			}
-		});
-    };
-  }, [violatorDrones]); */
-
   return (
+	// could do small animation before pilots has been fetched
    <div>
       <List pilots={violatorPilots}/>
    </div>

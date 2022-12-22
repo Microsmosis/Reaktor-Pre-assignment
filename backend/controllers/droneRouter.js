@@ -27,7 +27,6 @@ const convertCoordinates = (drone) => {
 droneDataRouter.get('/', async (request, response) => {
 	const allDrones = await getDroneData();
 	const violators = [];
-	let allPilotsInfo = [];
 	
 	if(allDrones?.length) {
 		allDrones.map((drone) => {
@@ -38,24 +37,20 @@ droneDataRouter.get('/', async (request, response) => {
 		});
 	}
 
+	// this function into own file > getPilotData.js 
 	await Promise.all(violators.map(async (pilot) => {
 		try {
 			const pilotInfo = await axios.get(`https://assignments.reaktor.com/birdnest/pilots/${pilot.serialNumber}`);
-			console.log(pilotInfo);
-			pilotInfo.data.violationTime = Date.now();
 			pilotInfo.data.distanceToNest = pilot.distanceToNest;
 			pilotInfo.data.serialNumber = pilot.serialNumber;
-			allPilotsInfo.push(pilotInfo.data);
-			queries.insertPilot(pilotInfo.data.firstName, pilotInfo.data.lastName, pilotInfo.data.email, pilotInfo.data.phoneNumberx);
+			await queries.insertPilot(pilotInfo.data.firstName, pilotInfo.data.lastName, pilotInfo.data.email, pilotInfo.data.phoneNumber, pilotInfo.data.distanceToNest, pilotInfo.data.serialNumber);
 		} catch (error) {
 			console.error(error);
 			allPilotsInfo = [];
 		};
 	}));
-	// allPilotsInfo has the information we want to save into db
-	// have to make sure not to insert duplicates 
-	// after saving to db we check timestamps and remove 10 min old
-	// fetch all records and return them from here
+
+	const allPilotsInfo = await queries.getPilots();
 
 	if(allPilotsInfo?.length) {
 		return response.status(200).send(allPilotsInfo);
