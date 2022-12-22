@@ -23,15 +23,5 @@ const convertCoordinates = (drone) => {
 
 export const droneData = (async () => {
 	const allDrones = await droneDataService();
-	const violators = [];
-	
-	if(allDrones?.length) {
-		allDrones.map((drone) => {
-			if(isViolator(drone) === true) {
-				drone = convertCoordinates(drone);
-				violators.push(drone);
-			};
-		});
-		return violators;
-	}
+	return allDrones;
 })

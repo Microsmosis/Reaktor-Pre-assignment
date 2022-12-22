@@ -1,6 +1,5 @@
 const axios = require('axios');
 
-
 const getPilotData = async (pilotSerialNumbers) => {
 	let allPilotsInfo = [];
 

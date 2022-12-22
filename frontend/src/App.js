@@ -16,21 +16,21 @@ const App = () => {
   useInterval(() => {
 	droneData().then((violators) => {
 		if(violators?.length) {
-			setViolatorDrones(violators);
+			setViolatorPilots(violators);
+			setClosestViolator(checkDistanceFromNest(violatorPilots));
 		}
 	});
   }, 3000);
 
-  useEffect(() => {
+/*   useEffect(() => {
 	if(violatorDrones?.length) {
 		pilotData(removeDuplicates(violatorDrones, violatorPilots)).then((pilots) => {
 			if(pilots?.length) {
 				setViolatorPilots(current => [...current, ...pilots]);
-				setClosestViolator(checkDistanceFromNest(violatorPilots));
 			}
 		});
     };
-  }, [violatorDrones]);
+  }, [violatorDrones]); */
 
   return (
    <div>
