@@ -1,0 +1,9 @@
+issues : 
+ sorting properly. the renderd output might be weird atm. 
+ the drone data is set to closestViolator, has to be Pilot.
+
+ todo :
+ components : 
+	- header
+	- the list or thumbnails of pilots 
+	- footer

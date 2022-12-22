@@ -15,7 +15,6 @@ const isViolator = (drone) => {
 
 const convertCoordinates = (drone) => {
 	const nestPosition = 250000;
-
 	drone.positionX = drone.positionX - nestPosition;
 	drone.positionY = drone.positionY - nestPosition;
 	drone.distanceToNest = Math.sqrt(drone.positionX * drone.positionX + drone.positionY * drone.positionY)
@@ -25,14 +24,14 @@ const convertCoordinates = (drone) => {
 export const droneData = (async () => {
 	const allDrones = await droneDataService();
 	const violators = [];
-
+	
 	if(allDrones?.length) {
-	  allDrones.map((drone) => {
-		if(isViolator(drone) === true) {
-		  drone = convertCoordinates(drone);
-		  violators.push(drone);
-		};
-	  });
-	  return violators;
+		allDrones.map((drone) => {
+			if(isViolator(drone) === true) {
+				drone = convertCoordinates(drone);
+				violators.push(drone);
+			};
+		});
+		return violators;
 	}
 })
