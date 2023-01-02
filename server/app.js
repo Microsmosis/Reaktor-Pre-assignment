@@ -7,7 +7,7 @@ const droneRouter = require("./controllers/droneRouter");
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://reaktor-nesty.herokuapp.com",
   })
 );
 
