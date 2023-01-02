@@ -17,6 +17,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ limit: "10mb" }));
 app.use(express.text());
 
-app.use("/api/drones", droneRouter);
+app.use("/drones", droneRouter);
 
 module.exports = app;
