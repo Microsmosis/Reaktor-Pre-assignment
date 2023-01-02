@@ -3,6 +3,8 @@ const app = express();
 const cors = require("cors");
 const droneRouter = require("./controllers/droneRouter");
 
+// https://reaktor-nesty.herokuapp.com/
+
 app.use(
   cors({
     origin: "http://localhost:3000",
