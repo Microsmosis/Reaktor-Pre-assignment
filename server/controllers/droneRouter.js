@@ -26,7 +26,9 @@ const getDistanceToNest = (x, y) => {
 droneDataRouter.get('/', async (request, response) => {
 	const allDrones = await getDroneData();
 	const violators = [];
-	
+
+	console.log("allDrones : ", allDrones);
+
 	if(allDrones?.length) {
 		allDrones.map((drone) => {
 			if(isViolator(drone.positionX, drone.positionY) === true) {
@@ -40,8 +42,12 @@ droneDataRouter.get('/', async (request, response) => {
 		});
 	};
 
+	console.log("violators : ", allDrones);
+
 	await insertPilotData(violators);
 	const allPilotsInfo = await queries.getPilots();
+	
+	console.log("allPilotsInfo : ", allPilotsInfo);
 
 	if(allPilotsInfo?.length) {
 		return response.status(200).send(allPilotsInfo);
