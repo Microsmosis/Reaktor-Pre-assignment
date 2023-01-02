@@ -9,7 +9,7 @@ import { checkDistanceFromNest } from './utils/distanceFromNest';
 
 const App = () => {
   const [violatorPilots, setViolatorPilots] = useState([]);
-  const [closestViolator, setClosestViolator] = useState({}); // this is now the drone but has to be the pilot
+  const [closestViolator, setClosestViolator] = useState({});
 
   useInterval(() => {
 	droneDataService().then((violators) => {
