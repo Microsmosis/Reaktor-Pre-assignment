@@ -23,7 +23,7 @@ const App = () => {
   return (
 	<>
 		{violatorPilots.length === 0 ? (<></>) :
-			(<div>
+			(<div className='app'>
 				<Header/>
 				<ClosestViolator violator={closestViolator}/>
 				<List pilots={violatorPilots}/>

@@ -1,30 +1,98 @@
+body {
+	/* background: url('https://parisruby.com/wp-content/uploads/2022/08/parisrubyfaviconnew.png') no-repeat fixed; */
+	background-image: linear-gradient(to top, #c5c5c5c1 33%, #dedede 66%, #bababaab 100%);
+	background-attachment: fixed;
+	margin: 0;
+}
+
+.banner {
+	padding: calc(1px + 0.390625vw);
+	background: #000000;
+}
+
+.radar {
+	width: 30px;
+}
+
+.guardbird {
+	font-family: 'DM Sans', sans-serif;
+	font-size: calc(8px + 0.390625vw);
+	position: relative;
+	float: right;
+	margin-top: 0.8vh;
+	color: white;
+}
+
 .header {
-	font-size: calc(100px + 0.390625vw);
+	font-size: calc(50px + 0.390625vw);
 	text-align: center;
-	font-family: 'Creepster', cursive;
+	font-family: 'Orbitron', sans-serif;
 }
 
 .closest-violator {
 	font-family: 'DM Sans', sans-serif;
 	text-align: center;
-	margin-bottom: 40px;
+	display: block;
+	margin: auto;
+	margin-bottom: 2vw;
+	width: calc(350px + 0.390625vw);
+	height: calc(270px + 0.390625vw);
+	border-radius: 10px;
+	background: #cf1212;
+	box-shadow:inset 0px 0px 0px 5px rgb(255, 255, 255);
 }
 
 .list-of-pilots {
 	font-family: 'DM Sans', sans-serif;
 	font-size: calc(15px + 0.390625vw);
 	text-align: center;
-	margin-bottom: 175px;
 }
 
 .ndz-image {
 	width: calc(150px + 0.390625vw);
-	margin-bottom: 70px;
+	margin-bottom: 30px;
+	margin-top: 30px;
 }
 
 .center-loading-animation {
 	display: flex;
 	justify-content: center;
+}
+
+.card {
+	display: block;
+	margin: auto;
+	margin-bottom: 2vw;
+	width: calc(350px + 0.390625vw);
+	height: calc(125px + 0.390625vw);
+	border-radius: 10px;
+	background: #cf1212;
+	box-shadow:inset 0px 0px 0px 5px rgb(255, 255, 255);
+}
+
+.pilot-info {
+	display: inline-block;
+}
+
+.pilot-name {
+	color: black;
+}
+
+.pilot-number {
+	margin-top: -1.3vw;
+	margin-bottom: -1.3vw;
+	color: rgb(255, 255, 255);
+}
+
+.pilot-email {
+	color: black;
+}
+
+.phone-icon {
+	position: absolute;
+	margin-left: -110px;
+	margin-top: -8px;
+	width: 20px;
 }
 
 .lds-dual-ring {

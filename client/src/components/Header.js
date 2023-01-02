@@ -1,9 +1,16 @@
 import '../App.css';
+import radar from '../images/radar.png'
 
 export const Header = () => {
 	return (
-		<div className='header'>
-			<p>...The violators of the NDZ</p>
+		<div>
+			<div className='banner'>
+				<img src={radar} alt='' className='radar'/>
+				<span className='guardbird'>GUARDB1RD</span>
+			</div>
+			<div className='header'>
+				<p>VIOLATORS OF THE NDZ</p>
+			</div>
 		</div>
 	)
 }
