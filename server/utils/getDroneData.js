@@ -10,10 +10,8 @@ const getDroneData = async () => {
 		return drones;
 	} catch (error) {
 		console.error(error);
+		return null;
 	};
 }
-// INSTEAD OF TRY CATCH MAYBE IF ELSE STATEMENTS TO RETURN VALID STUFF NOW IT WILL RETURN 'drones'
-// EMPTY IF API FAILED WITH 404 etc
-// errror handling if reaktor api returns something else than 200.
 
 module.exports = getDroneData;

@@ -1,5 +1,7 @@
 import './App.css';
+import { Header } from './components/Header';
 import { List } from './components/List';
+import { ClosestViolator } from './components/ClosestViolator';
 import { useState } from 'react';
 import { droneDataService } from './services/droneDataService';
 import { useInterval } from './utils/useInterval';
@@ -19,11 +21,15 @@ const App = () => {
   }, 3000);
 
   return (
-	// could do small animation before pilots has been fetched
-   <div>
-      <List pilots={violatorPilots}/>
-   </div>
-  );
+	<>
+		{violatorPilots.length === 0 ? (<></>) :
+			(<div>
+				<Header/>
+				<ClosestViolator violator={closestViolator}/>
+				<List pilots={violatorPilots}/>
+			</div>)}
+	</>
+   );
 }
 
 export default App;

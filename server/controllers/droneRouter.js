@@ -1,7 +1,7 @@
-const axios = require('axios');
 const droneDataRouter = require("express").Router();
 const getDroneData = require('../utils/getDroneData');
 const queries = require("../queries/pilotquery");
+const insertPilotData = require('../utils/insertPilotData');
 
 const isViolator = (droneX, droneY) => {
 	const circleX = 250000;
@@ -34,33 +34,22 @@ droneDataRouter.get('/', async (request, response) => {
 				violators.push(drone);
 			};
 		});
-	}
+	} else {
+		return response.status(404).json({
+			error: 'No drones found.'
+		});
+	};
 
-	// this function into own file > getPilotData.js 
-	await Promise.all(violators.map(async (pilot) => {
-		try {
-			const { data: pilotInfo } = await axios.get(`https://assignments.reaktor.com/birdnest/pilots/${pilot.serialNumber}`);
-			pilotInfo.distanceToNest = pilot.distanceToNest;
-			pilotInfo.serialNumber = pilot.serialNumber;
-			await queries.insertPilot(pilotInfo.firstName, pilotInfo.lastName, pilotInfo.email, pilotInfo.phoneNumber, pilotInfo.distanceToNest, pilotInfo.serialNumber);
-		} catch (error) {
-			console.error(error);
-			allPilotsInfo = [];
-		};
-	}));
-
+	await insertPilotData(violators);
 	const allPilotsInfo = await queries.getPilots();
 
 	if(allPilotsInfo?.length) {
 		return response.status(200).send(allPilotsInfo);
 	} else {
 		return response.status(404).json({
-			error: 'No drones found or some kind of error occured.'
+			error: 'No pilots found.'
 		});
 	};
 })
-
-// think of conditions on based what to send based on error codes (200, 404, 500 etc.)
-// try catch
 
 module.exports = droneDataRouter;

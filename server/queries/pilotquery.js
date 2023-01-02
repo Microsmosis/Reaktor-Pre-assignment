@@ -7,7 +7,7 @@ const insertPilot = async (firstname, lastname, email, phone_number, distance_to
 			[firstname, lastname, email, phone_number, distance_to_nest, serial_number]
 		);
 	} catch (error) {
-
+		return null;
 	}
 };
 
@@ -17,12 +17,12 @@ const getPilots = async () => {
 			"DELETE FROM pilots WHERE date_added < (CURRENT_TIME - INTERVAL '10 minutes')"
 		);
 		let queryResponse = await pool.query(
-			"SELECT * FROM pilots"
+			"SELECT * FROM pilots ORDER BY date_added ASC"
 		);
 		return queryResponse.rows;
 	} catch (error) {
 		console.error(error.message);
-		return false;
+		return null;
 	}
 };
 
