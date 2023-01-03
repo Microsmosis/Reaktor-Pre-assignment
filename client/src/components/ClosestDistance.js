@@ -1,11 +1,11 @@
 import '../App.css';
 
-export const ClosestViolator = ({violator}) => {
-	if(violator){
+export const ClosestDistance = ({distance}) => {
+	if(distance){
 		return (
-			<div className='closest-violator'>
+			<div className='closest-distance'>
 				<p className='pilot-info'>Closest confirmed distance to the nest</p>
-				<h2>Distance : {Math.floor(violator.distance_to_nest ) / 1000}m</h2>
+				<h2>Distance : {Math.floor(distance) / 1000}m</h2>
 			</div>
 		)
 	} else {

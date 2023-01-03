@@ -3,20 +3,25 @@ import { useState } from 'react';
 import { List } from './components/List';
 import { Header } from './components/Header';
 import { BackgroundImage } from './components/BacgroundImage';
-import { ClosestViolator } from './components/ClosestViolator';
+import { ClosestDistance } from './components/ClosestDistance';
 import { pilotDataService } from './services/pilotDataService';
+import { distanceService } from './services/closestDistanceService';
 import { useInterval } from './utils/useInterval';
-import { checkDistanceFromNest } from './utils/distanceFromNest';
 
 const App = () => {
 	const [violatorPilots, setViolatorPilots] = useState([]);
-	const [closestViolator, setClosestViolator] = useState({});
+	const [closestDistance, setClosestDistance] = useState(0);
 
 	useInterval(() => {
 		pilotDataService().then((violators) => {
 			if(violators?.length) {
 				setViolatorPilots(violators);
-				setClosestViolator(checkDistanceFromNest(violatorPilots));
+			}
+		});
+		
+		distanceService().then((distance) => {
+			if(distance) {
+				setClosestDistance(distance);
 			}
 		});
 	}, 2000);
@@ -27,7 +32,7 @@ const App = () => {
 				(<div>
 					<BackgroundImage/>
 					<Header/>
-					<ClosestViolator violator={closestViolator}/>
+					<ClosestDistance distance={closestDistance}/>
 					<List pilots={violatorPilots}/>
 				</div>)}
 		</>
