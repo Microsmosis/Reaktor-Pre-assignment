@@ -1,16 +1,15 @@
 const pilotDataRouter = require("express").Router();
-const queries = require("../queries/pilotquery");
+const queries = require("../queries/pilotQuery");
 
 pilotDataRouter.get('/', async (request, response) => {
-	const allPilotsInfo = await queries.getPilots();
-
-	if(allPilotsInfo?.length) {
+	try {
+		const allPilotsInfo = await queries.getPilots();
 		return response.status(200).send(allPilotsInfo);
-	} else {
+	} catch (error) {
 		return response.status(404).json({
 			error: 'No pilots found.'
 		});
 	};
-})
+});
 
 module.exports = pilotDataRouter;
