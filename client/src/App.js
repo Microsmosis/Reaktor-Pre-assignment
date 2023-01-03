@@ -19,7 +19,7 @@ const App = () => {
 				setClosestViolator(checkDistanceFromNest(violatorPilots));
 			}
 		});
-	}, 3000);
+	}, 2000);
 
 	return (
 		<>
