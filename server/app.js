@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const pilotRouter = require('./controllers/pilotRouter');
+const distanceRouter = require('./controllers/distanceRouter')
 
 if (process.env.NODE_ENV === 'production') {
 	const path = require('path');
