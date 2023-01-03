@@ -1,13 +1,25 @@
 body {
-	/* background: url('https://parisruby.com/wp-content/uploads/2022/08/parisrubyfaviconnew.png') no-repeat fixed; */
-	background-image: linear-gradient(to top, #c5c5c5c1 33%, #dedede 66%, #bababaab 100%);
+	background: radial-gradient(circle, rgba(251,63,63,0.9023984593837535) 0%, rgba(173,173,173,1) 100%);
 	background-attachment: fixed;
 	margin: 0;
+}
+
+.background-image {
+	width: calc(650px + 0.390625vw);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: -1;
+	opacity: 0.2;
 }
 
 .banner {
 	padding: calc(1px + 0.390625vw);
 	background: #000000;
+	position: fixed;
+	top: 0;
+	width: 99.2%
 }
 
 .radar {
@@ -15,11 +27,11 @@ body {
 }
 
 .guardbird {
-	font-family: 'DM Sans', sans-serif;
+	font-family: 'Chakra Petch', sans-serif;
 	font-size: calc(8px + 0.390625vw);
 	position: relative;
 	float: right;
-	margin-top: 0.8vh;
+	margin-top: 7px;
 	color: white;
 }
 
@@ -30,7 +42,7 @@ body {
 }
 
 .closest-violator {
-	font-family: 'DM Sans', sans-serif;
+	font-family: 'Chakra Petch', sans-serif;
 	text-align: center;
 	display: block;
 	margin: auto;
@@ -40,12 +52,14 @@ body {
 	border-radius: 10px;
 	background: #cf1212;
 	box-shadow:inset 0px 0px 0px 5px rgb(255, 255, 255);
+	color: white;
 }
 
 .list-of-pilots {
-	font-family: 'DM Sans', sans-serif;
+	font-family: 'Chakra Petch', sans-serif;
 	font-size: calc(15px + 0.390625vw);
 	text-align: center;
+
 }
 
 .ndz-image {
@@ -62,36 +76,30 @@ body {
 .card {
 	display: block;
 	margin: auto;
-	margin-bottom: 2vw;
+	margin-bottom: 25px;
 	width: calc(350px + 0.390625vw);
 	height: calc(125px + 0.390625vw);
 	border-radius: 10px;
 	background: #cf1212;
 	box-shadow:inset 0px 0px 0px 5px rgb(255, 255, 255);
+	color: white;
+	font-size: calc(13px + 0.390625vw);
 }
 
 .pilot-info {
 	display: inline-block;
 }
 
-.pilot-name {
-	color: black;
-}
-
 .pilot-number {
-	margin-top: -1.3vw;
-	margin-bottom: -1.3vw;
+	margin-top: -13px;
+	margin-bottom: -16px;
 	color: rgb(255, 255, 255);
-}
-
-.pilot-email {
-	color: black;
 }
 
 .phone-icon {
 	position: absolute;
-	margin-left: -110px;
-	margin-top: -8px;
+	margin-left: -100px;
+	margin-top: -6px;
 	width: 20px;
 }
 

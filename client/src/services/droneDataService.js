@@ -7,7 +7,6 @@ export const droneDataService = async () => {
 		const response = await axios.get(`${API_URL}/drones`);
 		return response.data;
 	} catch (error) {
-		console.error(error);
 		return null;
 	}
 }
