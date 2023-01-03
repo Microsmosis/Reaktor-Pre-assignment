@@ -11,4 +11,4 @@ If so, we will fetch the information of the pilot flying this drone by passing t
 
 This assignment was done with React, NodeJS, Express, PostgreSQL.
 
-Here is a link to the web app : http://reaktor-nesty.herokuapp.com/
+Here is a link to the web app : https://reaktor-nesty.herokuapp.com/
