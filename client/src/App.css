@@ -59,7 +59,6 @@ body {
 	font-family: 'Chakra Petch', sans-serif;
 	font-size: calc(15px + 0.390625vw);
 	text-align: center;
-
 }
 
 .ndz-image {
@@ -78,12 +77,12 @@ body {
 	margin: auto;
 	margin-bottom: 25px;
 	width: calc(350px + 0.390625vw);
-	height: calc(125px + 0.390625vw);
+	height: calc(90px + 0.390625vw);
 	border-radius: 10px;
 	background: #cf1212;
 	box-shadow:inset 0px 0px 0px 5px rgb(255, 255, 255);
 	color: white;
-	font-size: calc(13px + 0.390625vw);
+	font-size: calc(13px + 0.190625vw);
 }
 
 .pilot-info {
