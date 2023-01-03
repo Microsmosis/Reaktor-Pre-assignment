@@ -10,6 +10,7 @@ export const Header = () => {
 			</div>
 			<div className='header'>
 				<p>VIOLATORS OF THE NDZ</p>
+				<p className='info'>Information from the last 10 minutes</p>
 			</div>
 		</div>
 	)

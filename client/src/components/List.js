@@ -16,7 +16,6 @@ export const List = ({pilots}) => {
 		<div className='list-of-pilots'>
 			<img src={ndz_image} className='ndz-image'/>
 			<h2>Recent Violators</h2>
-			<h4>from the last 10 minutes</h4>
 			{allPilots}
 		</div>
 	)
