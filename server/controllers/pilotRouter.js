@@ -10,7 +10,6 @@ pilotDataRouter.get('/', async (request, response) => {
 			error: 'No pilots found.'
 		});
 	};
-	
 });
 
 module.exports = pilotDataRouter;
