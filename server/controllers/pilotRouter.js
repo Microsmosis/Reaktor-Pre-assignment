@@ -1,7 +1,7 @@
-const droneDataRouter = require("express").Router();
+const pilotDataRouter = require("express").Router();
 const queries = require("../queries/pilotquery");
 
-droneDataRouter.get('/', async (request, response) => {
+pilotDataRouter.get('/', async (request, response) => {
 	const allPilotsInfo = await queries.getPilots();
 
 	if(allPilotsInfo?.length) {
@@ -13,4 +13,4 @@ droneDataRouter.get('/', async (request, response) => {
 	};
 })
 
-module.exports = droneDataRouter;
+module.exports = pilotDataRouter;

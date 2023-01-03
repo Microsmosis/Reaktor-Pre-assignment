@@ -4,7 +4,7 @@ import { List } from './components/List';
 import { Header } from './components/Header';
 import { BackgroundImage } from './components/BacgroundImage';
 import { ClosestViolator } from './components/ClosestViolator';
-import { droneDataService } from './services/droneDataService';
+import { pilotDataService } from './services/pilotDataService';
 import { useInterval } from './utils/useInterval';
 import { checkDistanceFromNest } from './utils/distanceFromNest';
 
@@ -13,7 +13,7 @@ const App = () => {
 	const [closestViolator, setClosestViolator] = useState({});
 
 	useInterval(() => {
-		droneDataService().then((violators) => {
+		pilotDataService().then((violators) => {
 			if(violators?.length) {
 				setViolatorPilots(violators);
 				setClosestViolator(checkDistanceFromNest(violatorPilots));
