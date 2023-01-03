@@ -24,7 +24,7 @@ const App = () => {
 	return (
 		<>
 			{violatorPilots.length === 0 ? (<></>) :
-				(<div className='app'>
+				(<div>
 					<BackgroundImage/>
 					<Header/>
 					<ClosestViolator violator={closestViolator}/>
