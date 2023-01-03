@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const pilotRouter = require('./controllers/pilotRouter');
-const distanceRouter = require('./controllers/distanceRouter')
+const distanceRouter = require('./controllers/distanceRouter');
 
 if (process.env.NODE_ENV === 'production') {
 	const path = require('path');
@@ -14,8 +14,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 module.exports = app;
-
-/* const express = require('express');
+/* 
+const express = require('express');
 const app = express();
 const cors = require('cors'); // uninstall CORS when done with dev.
 const pilotRouter = require('./controllers/pilotRouter');
