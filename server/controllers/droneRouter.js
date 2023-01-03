@@ -10,9 +10,9 @@ const isViolator = (droneX, droneY) => {
 
 	if ((droneX - circleX) * (droneX - circleX) +
 		  (droneY - circleY) * (droneY - circleY) <= radius * radius) {
-	  return true;
+		return true;
 	} else {
-	  return false;
+		return false;
 	}
 }
 
