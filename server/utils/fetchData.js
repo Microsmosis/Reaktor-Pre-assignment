@@ -11,15 +11,15 @@ const isViolator = (droneX, droneY) => {
 		return true;
 	} else {
 		return false;
-	}
-}
+	};
+};
 
 const getDistanceToNest = (x, y) => {
 	const nestPosition = 250000;
 	x = x - nestPosition;
 	y = y - nestPosition;
 	return Math.sqrt(x * x + y * y)
-}
+};
 
 const fetchData = async () => {
 	const allDrones = await getDroneData();
@@ -34,6 +34,6 @@ const fetchData = async () => {
 		});
 		await insertPilotData(violators);
 	}
-}
+};
 
 module.exports = fetchData;

@@ -13,7 +13,7 @@ const getClosestDistance = async () => {
 		return closestDistance.rows[0].distance;
 	} catch (error) {
 		return null;
-	}
+	};
 };
 
 module.exports = {

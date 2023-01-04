@@ -21,6 +21,6 @@ const insertPilotData = async (violators) => {
 			console.error(error);
 		};
 	}));
-}
+};
 
 module.exports = insertPilotData;

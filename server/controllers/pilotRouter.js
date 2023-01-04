@@ -1,5 +1,5 @@
 const pilotDataRouter = require("express").Router();
-const queries = require("../queries/pilotQuery");
+const queries = require("../queries/pilotquery");
 
 pilotDataRouter.get('/', async (request, response) => {
 	try {

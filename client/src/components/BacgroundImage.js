@@ -6,5 +6,5 @@ export const BackgroundImage = () => {
 		<div>
 			<img src={background_image} className='background-image'/>
 		</div>
-	)
-}
+	);
+};

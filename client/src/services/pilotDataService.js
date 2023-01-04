@@ -7,5 +7,5 @@ export const pilotDataService = async () => {
 		return response.data;
 	} catch (error) {
 		return null;
-	}
-}
+	};
+};

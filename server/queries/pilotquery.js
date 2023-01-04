@@ -17,7 +17,7 @@ const insertPilot = async (firstname, lastname, email, phone_number, distance_to
 		);
 	} catch (error) {
 		return null;
-	}
+	};
 };
 
 const getPilots = async () => {
@@ -29,7 +29,7 @@ const getPilots = async () => {
 	} catch (error) {
 		console.error(error.message);
 		return null;
-	}
+	};
 };
 
 const deletePilots = async () => {
@@ -40,8 +40,8 @@ const deletePilots = async () => {
 	} catch (error) {
 		console.error(error.message);
 		return null;
-	}
-}
+	};
+};
 
 module.exports = {
 	insertPilot,

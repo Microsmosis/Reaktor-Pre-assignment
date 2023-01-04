@@ -7,5 +7,5 @@ export const distanceService = async () => {
 		return response.data;
 	} catch (error) {
 		return null;
-	}
-}
+	};
+};

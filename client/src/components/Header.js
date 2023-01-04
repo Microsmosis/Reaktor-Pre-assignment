@@ -12,5 +12,5 @@ export const Header = () => {
 				<p>VIOLATORS OF THE NDZ</p>
 			</div>
 		</div>
-	)
-}
+	);
+};

@@ -19,5 +19,5 @@ export const List = ({pilots}) => {
 			<p className='info'>Information from the last 10 minutes</p>
 			{allPilots}
 		</div>
-	)
-}
+	);
+};

@@ -12,6 +12,6 @@ const getDroneData = async () => {
 		console.error(error);
 		return null;
 	};
-}
+};
 
 module.exports = getDroneData;
