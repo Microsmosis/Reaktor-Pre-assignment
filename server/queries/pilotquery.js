@@ -22,9 +22,6 @@ const insertPilot = async (firstname, lastname, email, phone_number, distance_to
 
 const getPilots = async () => {
 	try {
-		await pool.query(
-			"DELETE FROM pilots WHERE date_added < (CURRENT_TIME - INTERVAL '10 minutes')"
-		);
 		let queryResponse = await pool.query(
 			"SELECT * FROM pilots ORDER BY date_added ASC"
 		);
@@ -35,7 +32,19 @@ const getPilots = async () => {
 	}
 };
 
+const deletePilots = async () => {
+	try {
+		await pool.query(
+			"DELETE FROM pilots WHERE date_added < (CURRENT_TIME - INTERVAL '10 minutes')"
+		);
+	} catch (error) {
+		console.error(error.message);
+		return null;
+	}
+}
+
 module.exports = {
 	insertPilot,
 	getPilots,
+	deletePilots,
 };
