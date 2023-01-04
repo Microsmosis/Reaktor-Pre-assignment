@@ -1,7 +1,16 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const pilotRouter = require('./controllers/pilotRouter');
 const distanceRouter = require('./controllers/distanceRouter');
+
+app.use(
+	cors({
+	  origin: 'http://reaktor-nesty.herokuapp.com',
+	})
+);
+
+app.use(cors());
 
 if (process.env.NODE_ENV === 'production') {
 	const path = require('path');

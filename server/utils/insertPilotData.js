@@ -1,5 +1,5 @@
 const axios = require('axios');
-const queries = require("../queries/pilotquery");
+const queries = require("../queries/pilotQuery");
 
 const insertPilotData = async (violators) => {
 	await queries.deletePilots();

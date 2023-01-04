@@ -1,4 +1,5 @@
 import './App.css';
+import io from "socket.io-client";
 import { useState } from 'react';
 import { List } from './components/List';
 import { Header } from './components/Header';
@@ -8,18 +9,19 @@ import { pilotDataService } from './services/pilotDataService';
 import { distanceService } from './services/closestDistanceService';
 import { useInterval } from './utils/useInterval';
 
+const socket = io.connect("http://localhost:5000");
+
 const App = () => {
 	const [violatorPilots, setViolatorPilots] = useState([]);
 	const [closestDistance, setClosestDistance] = useState(0);
 
 	useInterval(() => {
-		pilotDataService().then((violators) => {
+		socket.emit("violators", (violators) => {
 			if(violators?.length) {
 				setViolatorPilots(violators);
 			}
 		});
-		
-		distanceService().then((distance) => {
+		socket.emit("closest_distance", (distance) => {
 			if(distance) {
 				setClosestDistance(distance);
 			}
