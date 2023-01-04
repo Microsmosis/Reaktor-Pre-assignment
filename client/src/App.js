@@ -5,11 +5,9 @@ import { List } from './components/List';
 import { Header } from './components/Header';
 import { BackgroundImage } from './components/BacgroundImage';
 import { ClosestDistance } from './components/ClosestDistance';
-import { pilotDataService } from './services/pilotDataService';
-import { distanceService } from './services/closestDistanceService';
 import { useInterval } from './utils/useInterval';
 
-const socket = io.connect("http://localhost:5000");
+const socket = io.connect("http://reaktor-nesty.herokuapp.com");
 
 const App = () => {
 	const [violatorPilots, setViolatorPilots] = useState([]);
