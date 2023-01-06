@@ -1,4 +1,4 @@
-### Web Application to view all pilots who have violated the "no-drone-zone"!
+## Web Application to view all pilots who have violated the "no-drone-zone"!
 
 Information about drones and pilots are fetched from Reaktor's /drones and /pilots/:serial-number API's.
 Drone information consists of the model of the drone, serial-number, IP, etc and the most important the position!
@@ -13,7 +13,7 @@ The information is saved to a database. This data is then requested from the ser
 is rendered to the user.
 
 
-# I decided to use websockets due to the frequent communication between client and server-side.
+### I decided to use websockets due to the frequent communication between client and server-side.
 
 * The server is fetching drone and pilot data about every 2 seconds from Reaktor's API's.
 * The client side is doing requests to the server via websockets in 2 second intervals as well.
