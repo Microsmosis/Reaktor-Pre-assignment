@@ -7,19 +7,19 @@ import { BackgroundImage } from './components/BacgroundImage';
 import { ClosestDistance } from './components/ClosestDistance';
 import { useInterval } from './utils/useInterval';
 
-const socket = io.connect("http://reaktor-nesty.herokuapp.com");
+const socket = io.connect("https://reaktor-nesty.herokuapp.com");
 
 const App = () => {
 	const [violatorPilots, setViolatorPilots] = useState([]);
 	const [closestDistance, setClosestDistance] = useState(0);
 
 	useInterval(() => {
-		socket.emit("violators", (violators) => {
+		socket?.emit("violators", (violators) => {
 			if(violators?.length) {
 				setViolatorPilots(violators);
 			}
 		});
-		socket.emit("closest_distance", (distance) => {
+		socket?.emit("closest_distance", (distance) => {
 			if(distance) {
 				setClosestDistance(distance);
 			}

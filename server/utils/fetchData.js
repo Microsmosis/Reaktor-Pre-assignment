@@ -6,6 +6,7 @@ const isViolator = (droneX, droneY) => {
 	const circleY = 250000;
 	const radius = 100000;
 
+	// Equation to check if the drone is inside the 100m radius.
 	if ((droneX - circleX) * (droneX - circleX) +
 		  (droneY - circleY) * (droneY - circleY) <= radius * radius) {
 		return true;

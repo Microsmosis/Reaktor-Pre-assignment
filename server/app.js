@@ -6,7 +6,7 @@ const distanceRouter = require('./controllers/distanceRouter');
 
 app.use(
 	cors({
-	  origin: 'http://reaktor-nesty.herokuapp.com',
+	  origin: 'https://reaktor-nesty.herokuapp.com',
 	})
 );
 
