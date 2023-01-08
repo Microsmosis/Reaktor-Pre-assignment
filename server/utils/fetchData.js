@@ -1,5 +1,6 @@
 const getDroneData = require('./getDroneData');
 const insertPilotData = require('./insertPilotData');
+const queries = require("../queries/pilotQuery");
 
 const isViolator = (droneX, droneY) => {
 	const circleX = 250000;
@@ -24,6 +25,7 @@ const getDistanceToNest = (x, y) => {
 
 const fetchData = async () => {
 	const allDrones = await getDroneData();
+	await queries.deletePilots();
 	const violators = [];
 
 	if(allDrones?.length) {

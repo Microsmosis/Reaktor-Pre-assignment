@@ -2,7 +2,6 @@ const axios = require('axios');
 const queries = require("../queries/pilotQuery");
 
 const insertPilotData = async (violators) => {
-	await queries.deletePilots();
 	await Promise.all(violators.map(async (pilot) => {
 		try {
 			const { data: pilotInfo } = await axios
