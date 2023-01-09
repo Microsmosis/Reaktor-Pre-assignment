@@ -12,7 +12,7 @@ const insertPilot = async (firstname, lastname, email, phone_number, distance_to
 				serial_number, 
 				date_added
 			) 
-			VALUES($1, $2, $3, $4, $5, $6, CURRENT_TIME)`,
+			VALUES($1, $2, $3, $4, $5, $6, CURRENT_TIMESTAMP)`,
 			[firstname, lastname, email, phone_number, distance_to_nest, serial_number]
 		);
 	} catch (error) {
@@ -35,7 +35,7 @@ const getPilots = async () => {
 const deletePilots = async () => {
 	try {
 		await pool.query(
-			"DELETE FROM pilots WHERE date_added < (CURRENT_TIME - INTERVAL '10 minutes')"
+			"DELETE FROM pilots WHERE date_added < (CURRENT_TIMESTAMP - INTERVAL '10 minutes')"
 		);
 	} catch (error) {
 		console.error(error.message);
