@@ -1,6 +1,10 @@
 const axios = require('axios');
 const queries = require("../queries/pilotQuery");
 
+// Function to request pilot information from Reaktor /pilots/pilot:id endpoint.
+// Violator pilot id's have been passed as argument to this function.
+// The function will iterate threw the id's with map method and insert pilots
+// into the database.
 const insertPilotData = async (violators) => {
 	await Promise.all(violators.map(async (pilot) => {
 		try {

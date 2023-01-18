@@ -1,6 +1,7 @@
 const distanceRouter = require("express").Router();
 const queries = require("../queries/distanceQuery");
 
+// Querying the database for distance data
 distanceRouter.get('/', async (request, response) => {
 	try {
 		const distance = await queries.getClosestDistance();

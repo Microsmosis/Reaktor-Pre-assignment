@@ -1,6 +1,7 @@
 const pilotDataRouter = require("express").Router();
 const queries = require("../queries/pilotQuery");
 
+// Querying the database for pilot data
 pilotDataRouter.get('/', async (request, response) => {
 	try {
 		const allPilotsInfo = await queries.getPilots();

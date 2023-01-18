@@ -9,6 +9,7 @@ require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const server = http.createServer(app);
 
+// Creating new websocket server.
 const io = new Server(server, {
 	cors: {
 		origin: "https://reaktor-nesty.herokuapp.com",
@@ -16,6 +17,9 @@ const io = new Server(server, {
 	},
 });
 
+// Listening for events.
+// Client side emits an event where server responds by fetching
+// information from the database and sends it back with the use of callback().
 io.on("connection", (socket) => {
 	socket.on("violators", async (callback) => {
 		try {
@@ -44,4 +48,6 @@ server.listen(PORT, () => {
 	console.log(`Server running on port: ${PORT}`);
 });
 
+// Setting an interval to fetch drone and pilot data from Reaktor API endpoints
+// about every 2 seconds.
 setInterval(fetchData, 2000);
