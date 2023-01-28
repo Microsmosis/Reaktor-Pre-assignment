@@ -1,4 +1,5 @@
 const pool = require("../utils/database");
+const errorLogger = require("../errors/errorLogger");
 
 const insertPilot = async (firstname, lastname, email, phone_number, distance_to_nest, serial_number) => {
 	try {
@@ -16,6 +17,7 @@ const insertPilot = async (firstname, lastname, email, phone_number, distance_to
 			[firstname, lastname, email, phone_number, distance_to_nest, serial_number]
 		);
 	} catch (error) {
+		errorLogger(error);
 		return null;
 	};
 };

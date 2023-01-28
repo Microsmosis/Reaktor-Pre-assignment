@@ -1,5 +1,6 @@
 const axios = require('axios');
 const queries = require("../queries/pilotQuery");
+const errorLogger = require("../errors/errorLogger");
 
 // Function to request pilot information from Reaktor /pilots/pilot:id endpoint.
 // Violator pilot id's have been passed as argument to this function.
@@ -21,7 +22,7 @@ const insertPilotData = async (violators) => {
 				pilotInfo.serialNumber
 			);
 		} catch (error) {
-			console.error(error);
+			errorLogger(error);
 		};
 	}));
 };

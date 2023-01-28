@@ -1,6 +1,7 @@
 const getDroneData = require('./getDroneData');
 const insertPilotData = require('./insertPilotData');
 const queries = require("../queries/pilotQuery");
+const errorLogger = require("../errors/errorLogger");
 
 // Function to check if drones are violating the "ndz".
 const isViolator = (droneX, droneY) => {
@@ -28,18 +29,22 @@ const getDistanceToNest = (x, y) => {
 // Function to fetch data from Reaktor API endpoints and to filter out non-violators.
 // This function will also insert the violating pilots into the database.
 const fetchData = async () => {
-	const allDrones = await getDroneData();
-	await queries.deletePilots();
-	const violators = [];
-
-	if(allDrones?.length) {
-		allDrones.map((drone) => {
-			if(isViolator(drone.positionX, drone.positionY) === true) {
-				drone.distanceToNest = getDistanceToNest(drone.positionX, drone.positionY);
-				violators.push(drone);
-			};
-		});
-		await insertPilotData(violators);
+	try {
+		const allDrones = await getDroneData();
+		await queries.deletePilots();
+		const violators = [];
+	
+		if(allDrones?.length) {
+			allDrones.map((drone) => {
+				if(isViolator(drone.positionX, drone.positionY) === true) {
+					drone.distanceToNest = getDistanceToNest(drone.positionX, drone.positionY);
+					violators.push(drone);
+				};
+			});
+			await insertPilotData(violators);
+		}
+	} catch (error) {
+		errorLogger(error);
 	}
 };
 

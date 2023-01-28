@@ -1,4 +1,5 @@
 const pool = require("../utils/database");
+const errorLogger = require("../errors/errorLogger");
 
 const getClosestDistance = async () => {
 	try {
@@ -12,6 +13,7 @@ const getClosestDistance = async () => {
 		)
 		return closestDistance.rows[0].distance;
 	} catch (error) {
+		errorLogger(error);
 		return null;
 	}
 };
